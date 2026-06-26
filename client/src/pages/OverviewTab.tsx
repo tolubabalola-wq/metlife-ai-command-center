@@ -10,7 +10,7 @@ import {
   AlertTriangle, Calendar, BookOpen,
 } from 'lucide-react';
 import {
-  AI_TOOLS, getPortfolioStats, getValueByPriority, MONTHLY_VALUE_TREND,
+  AI_TOOLS, getPortfolioStats, getValueByPriority, getValueByOutcome, MONTHLY_VALUE_TREND,
   getPortfolioRAIScores, ESCALATED_DECISIONS, QUARTERLY_MILESTONES,
   NEW_FRONTIER_PRIORITIES, IDEAS_BACKLOG, GLOSSARY, getRiskStatus, getStatusColor,
 } from '../lib/data';
@@ -131,7 +131,9 @@ function ExpandablePriorityBar({ priority, value, tools }: {
 export default function OverviewTab() {
   const stats = getPortfolioStats();
   const valueByPriority = getValueByPriority();
+  const valueByOutcome = getValueByOutcome();
   const raiScores = getPortfolioRAIScores();
+  const [outcomeExpanded, setOutcomeExpanded] = useState<'revenue' | 'expense' | null>(null);
   const [glossaryOpen, setGlossaryOpen] = useState(false);
 
   const productionTools = AI_TOOLS.filter(t => t.stage === 'Production');
@@ -231,29 +233,97 @@ export default function OverviewTab() {
 
         <Card>
           <SectionHeader
-            title="Value by Strategy Priority"
-            subtitle="Where realized AI value maps to MetLife's New Frontier strategic priorities."
+            title="Value by Strategic Priority"
+            subtitle="How realized AI value flows into MetLife's two New Frontier outcomes: growing revenue and reducing expenses."
           />
-          <ResponsiveContainer width="100%" height={180}>
-            <BarChart data={valueByPriority} layout="vertical" margin={{ top: 0, right: 50, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E1E8F1" horizontal={false} />
-              <XAxis type="number" tick={{ fontSize: 10, fill: '#8290A6' }} axisLine={false} tickLine={false} tickFormatter={v => `$${v}M`} />
-              <YAxis
-                type="category" dataKey="priority" tick={{ fontSize: 10, fill: '#54657E' }} axisLine={false} tickLine={false}
-                width={180}
-                tickFormatter={v => v.length > 28 ? v.slice(0, 28) + '…' : v}
-              />
-              <Tooltip
-                formatter={(v: number) => [`$${v.toFixed(1)}M`, 'Value Realized']}
-                contentStyle={{ background: '#fff', border: '1px solid #E1E8F1', borderRadius: 8, fontSize: 12 }}
-              />
-              <Bar dataKey="value" radius={[0, 4, 4, 0]}>
-                {valueByPriority.map((entry) => (
-                  <Cell key={entry.priority} fill={PRIORITY_COLORS[entry.priority] || COLORS.blue} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          {/* Two-bucket outcome view */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+
+            {/* Revenue bucket */}
+            {(['revenue', 'expense'] as const).map(bucket => {
+              const isRevenue = bucket === 'revenue';
+              const data = valueByOutcome[bucket];
+              const color = isRevenue ? COLORS.blue : COLORS.green;
+              const bgColor = isRevenue ? '#EBF6FD' : '#EEF8E6';
+              const borderColor = isRevenue ? '#B3DDF5' : '#B8E4A0';
+              const label = isRevenue ? 'Revenue' : 'Expense';
+              const outcome = isRevenue
+                ? 'EPS Growth · 15% ROE'
+                : 'Expense Ratio –100 BPS · $25B Free Cash Flow';
+              const how = isRevenue
+                ? 'These tools grow top-line income by accelerating sales, improving retention, and enabling faster underwriting decisions — all of which lift premiums and earnings per share.'
+                : 'These tools cut operating cost by automating claims, service, and back-office steps — reducing the expense ratio and releasing cash that flows into free cash flow.';
+              const isOpen = outcomeExpanded === bucket;
+              const totalValue = valueByOutcome.revenue.value + valueByOutcome.expense.value;
+              const pct = Math.round((data.value / totalValue) * 100);
+
+              return (
+                <div key={bucket} style={{ border: `1.5px solid ${borderColor}`, borderRadius: 10, overflow: 'hidden', background: bgColor }}>
+                  {/* Header row */}
+                  <div
+                    onClick={() => setOutcomeExpanded(isOpen ? null : bucket)}
+                    style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', cursor: 'pointer' }}
+                  >
+                    {/* Bucket label + outcome targets */}
+                    <div style={{ flexShrink: 0, width: 200 }}>
+                      <div style={{ fontSize: 12, fontWeight: 800, color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</div>
+                      <div style={{ fontSize: 10, color: '#54657E', lineHeight: 1.35, marginTop: 2 }}>{outcome}</div>
+                    </div>
+                    {/* Bar track */}
+                    <div style={{ flex: 1, background: 'rgba(255,255,255,0.7)', borderRadius: 6, height: 26, overflow: 'hidden', position: 'relative' }}>
+                      <div style={{
+                        width: `${pct}%`, height: '100%', background: color,
+                        borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 10,
+                        transition: 'width 0.7s cubic-bezier(0.23,1,0.32,1)',
+                        minWidth: 100,
+                      }}>
+                        <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: 'white', whiteSpace: 'nowrap' }}>{pct}% of total</span>
+                      </div>
+                    </div>
+                    {/* Value */}
+                    <span className="mono" style={{ fontSize: 17, fontWeight: 800, color, flexShrink: 0, width: 68, textAlign: 'right' }}>${data.value.toFixed(1)}M</span>
+                    {/* Tool count + chevron */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0, width: 110 }}>
+                      <span style={{ fontSize: 11, color: '#54657E', whiteSpace: 'nowrap' }}>
+                        {data.tools.filter(t => t.stage === 'Production').length} live
+                        {data.tools.filter(t => t.stage !== 'Production').length > 0 && ` + ${data.tools.filter(t => t.stage !== 'Production').length} scaling`}
+                      </span>
+                      {isOpen ? <ChevronDown size={13} color="#8290A6" /> : <ChevronRight size={13} color="#8290A6" />}
+                    </div>
+                  </div>
+
+                  {/* Expanded: how it works + tool list */}
+                  {isOpen && (
+                    <div style={{ padding: '0 16px 14px 16px', borderTop: `1px solid ${borderColor}` }}>
+                      <p style={{ fontSize: 12, color: '#54657E', lineHeight: 1.5, margin: '10px 0 10px 0' }}>{how}</p>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                        {data.tools.sort((a, b) => (b.stage === 'Production' ? 1 : 0) - (a.stage === 'Production' ? 1 : 0)).map(t => {
+                          const isProduction = t.stage === 'Production';
+                          return (
+                            <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 10px', background: isProduction ? 'white' : '#FAFCFF', borderRadius: 7, border: `1px solid ${isProduction ? 'rgba(0,0,0,0.06)' : '#E1E8F1'}` }}>
+                              <StatusDot color={getStatusColor(t.testing.overallQuality)} />
+                              <span style={{ flex: 1, fontSize: 12, fontWeight: 500, color: '#16273D' }}>{t.name}</span>
+                              <span style={{ fontSize: 11, color: '#8290A6' }}>{t.function}</span>
+                              {!isProduction && (
+                                <span style={{ fontSize: 10, fontWeight: 600, color: '#0090DA', background: '#EBF6FD', borderRadius: 4, padding: '2px 6px' }}>Scaling</span>
+                              )}
+                              <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: isProduction ? color : '#8290A6', width: 58, textAlign: 'right' }}>
+                                {isProduction ? `$${(t.yearlyValue * t.usagePercent / 100).toFixed(1)}M` : 'pending'}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            <div style={{ fontSize: 11, color: '#8290A6', lineHeight: 1.4, marginTop: 2 }}>
+              <strong>Revenue</strong> = tools that grow premiums, sales, or retention. <strong>Expense</strong> = tools that cut operating cost or automate manual steps. Click either row to see the contributing tools.
+            </div>
+          </div>
         </Card>
       </div>
 

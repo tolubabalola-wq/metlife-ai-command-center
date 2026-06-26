@@ -58,6 +58,7 @@ export interface AITool {
     resiliency: number;
   };
   newFrontierPriority: string;
+  newFrontierOutcome: 'revenue' | 'expense'; // Which New Frontier outcome this tool primarily drives
   weeklyQualityTrend: number[];
 }
 
@@ -117,6 +118,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Ambiguous policy wording', 'High-value claim above threshold', 'Fraud flag raised'],
     responsibleAI: { fairness: 88, transparency: 85, privacy: 92, accountability: 90, performance: 91, dataGovernance: 89, resiliency: 87 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [88, 89, 90, 91, 90, 92, 91, 91],
   },
   {
@@ -140,6 +142,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Score in borderline range', 'New fraud pattern not in training data', 'Regulatory review required'],
     responsibleAI: { fairness: 79, transparency: 72, privacy: 85, accountability: 83, performance: 88, dataGovernance: 84, resiliency: 90 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [85, 86, 87, 88, 87, 89, 88, 88],
   },
   {
@@ -163,6 +166,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Complaint escalation', 'Complex policy query', 'Customer requests human'],
     responsibleAI: { fairness: 85, transparency: 88, privacy: 90, accountability: 87, performance: 86, dataGovernance: 88, resiliency: 84 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [83, 84, 85, 86, 85, 87, 86, 86],
   },
   {
@@ -186,6 +190,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Complaint or distress signal', 'Policy change request', 'Billing dispute'],
     responsibleAI: { fairness: 90, transparency: 91, privacy: 93, accountability: 89, performance: 90, dataGovernance: 91, resiliency: 88 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [88, 89, 90, 91, 90, 91, 90, 90],
   },
   {
@@ -209,6 +214,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Borderline risk case', 'Missing medical data', 'High-sum assured above limit'],
     responsibleAI: { fairness: 76, transparency: 80, privacy: 88, accountability: 85, performance: 88, dataGovernance: 86, resiliency: 82 },
     newFrontierPriority: 'Extend leadership in Group Benefits',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [86, 87, 88, 89, 88, 89, 89, 89],
   },
   {
@@ -232,6 +238,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Complex group scheme', 'Regulatory disclosure required', 'Price exception needed'],
     responsibleAI: { fairness: 83, transparency: 86, privacy: 89, accountability: 88, performance: 88, dataGovernance: 87, resiliency: 85 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [86, 87, 88, 89, 88, 90, 89, 88],
   },
   {
@@ -255,6 +262,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Illegible document', 'Missing mandatory field', 'Unusual document format'],
     responsibleAI: { fairness: 92, transparency: 90, privacy: 91, accountability: 93, performance: 95, dataGovernance: 94, resiliency: 91 },
     newFrontierPriority: 'Technology and efficiency enabler',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [93, 94, 95, 95, 94, 96, 95, 95],
   },
   {
@@ -278,6 +286,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['VIP customer', 'Complex multi-policy household', 'Regulatory opt-out'],
     responsibleAI: { fairness: 81, transparency: 79, privacy: 87, accountability: 84, performance: 84, dataGovernance: 83, resiliency: 80 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [80, 81, 82, 83, 83, 84, 84, 84],
   },
   {
@@ -301,6 +310,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Regulatory escalation', 'Legal threat', 'Media or social media risk'],
     responsibleAI: { fairness: 82, transparency: 84, privacy: 88, accountability: 86, performance: 86, dataGovernance: 85, resiliency: 83 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [83, 84, 85, 86, 85, 87, 86, 86],
   },
   {
@@ -324,6 +334,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Novel risk class', 'Conflicting source data', 'Regulatory sign-off needed'],
     responsibleAI: { fairness: 80, transparency: 83, privacy: 86, accountability: 84, performance: 85, dataGovernance: 87, resiliency: 79 },
     newFrontierPriority: 'Capitalize on the retirement platform',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [83, 84, 85, 86, 86, 87, 87, 87],
   },
   {
@@ -347,6 +358,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Bespoke benefit design', 'Large scheme above threshold', 'Client requests custom format'],
     responsibleAI: { fairness: 86, transparency: 88, privacy: 90, accountability: 89, performance: 90, dataGovernance: 88, resiliency: 86 },
     newFrontierPriority: 'Extend leadership in Group Benefits',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [87, 88, 89, 90, 89, 91, 90, 90],
   },
   {
@@ -370,6 +382,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Sensitive personal matter', 'Policy exception request', 'Legal or union query'],
     responsibleAI: { fairness: 89, transparency: 90, privacy: 94, accountability: 91, performance: 92, dataGovernance: 92, resiliency: 89 },
     newFrontierPriority: 'Technology and efficiency enabler',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [90, 91, 92, 92, 91, 93, 92, 92],
   },
   {
@@ -393,6 +406,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Security-sensitive code', 'Architecture decision', 'Compliance review'],
     responsibleAI: { fairness: 84, transparency: 87, privacy: 89, accountability: 88, performance: 88, dataGovernance: 87, resiliency: 86 },
     newFrontierPriority: 'Technology and efficiency enabler',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [86, 87, 88, 88, 87, 89, 88, 88],
   },
   {
@@ -416,6 +430,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Material regulatory change', 'Legal interpretation needed', 'Cross-border impact'],
     responsibleAI: { fairness: 83, transparency: 88, privacy: 87, accountability: 90, performance: 87, dataGovernance: 91, resiliency: 84 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [85, 86, 87, 88, 87, 88, 88, 88],
   },
   {
@@ -439,6 +454,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Identity verification failure', 'Sanctions screening match', 'Missing bank data'],
     responsibleAI: { fairness: 77, transparency: 75, privacy: 83, accountability: 81, performance: 82, dataGovernance: 80, resiliency: 78 },
     newFrontierPriority: 'Expand in high-growth international markets',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [78, 79, 80, 81, 81, 82, 82, 82],
   },
   {
@@ -462,6 +478,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Rare or complex condition', 'Conflicting clinical data', 'High-sum assured case'],
     responsibleAI: { fairness: 72, transparency: 74, privacy: 86, accountability: 80, performance: 86, dataGovernance: 83, resiliency: 77 },
     newFrontierPriority: 'Extend leadership in Group Benefits',
+    newFrontierOutcome: 'revenue',
     weeklyQualityTrend: [83, 84, 85, 86, 85, 87, 86, 87],
   },
   {
@@ -485,6 +502,7 @@ export const AI_TOOLS: AITool[] = [
     humanStepInReasons: ['Legal document requiring certified translation', 'Ambiguous insurance term', 'New language pair'],
     responsibleAI: { fairness: 91, transparency: 89, privacy: 92, accountability: 90, performance: 95, dataGovernance: 91, resiliency: 90 },
     newFrontierPriority: 'Technology and efficiency enabler',
+    newFrontierOutcome: 'expense',
     weeklyQualityTrend: [93, 94, 95, 95, 94, 96, 95, 95],
   },
 ];
@@ -552,6 +570,23 @@ export function getValueByPriority() {
     priorities[t.newFrontierPriority] = (priorities[t.newFrontierPriority] || 0) + t.yearlyValue * (t.usagePercent / 100);
   });
   return NEW_FRONTIER_PRIORITIES.map(p => ({ priority: p, value: Math.round(priorities[p] * 10) / 10 }));
+}
+
+// Returns value bucketed into the two New Frontier strategic outcomes.
+// Value is calculated from Production tools only (realized value).
+// The tools list includes Production + Scaling so the full pipeline is visible.
+export function getValueByOutcome() {
+  const liveOrScaling = AI_TOOLS.filter(t => t.stage === 'Production' || t.stage === 'Scaling');
+  const production = AI_TOOLS.filter(t => t.stage === 'Production');
+  const revenueTools = liveOrScaling.filter(t => t.newFrontierOutcome === 'revenue');
+  const expenseTools = liveOrScaling.filter(t => t.newFrontierOutcome === 'expense');
+  // Value counts only Production tools (realized)
+  const revenueValue = production.filter(t => t.newFrontierOutcome === 'revenue').reduce((s, t) => s + t.yearlyValue * (t.usagePercent / 100), 0);
+  const expenseValue = production.filter(t => t.newFrontierOutcome === 'expense').reduce((s, t) => s + t.yearlyValue * (t.usagePercent / 100), 0);
+  return {
+    revenue: { value: Math.round(revenueValue * 10) / 10, tools: revenueTools },
+    expense: { value: Math.round(expenseValue * 10) / 10, tools: expenseTools },
+  };
 }
 
 // Monthly value trend (last 8 months)
