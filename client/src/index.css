@@ -40,77 +40,55 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* MetLife Brand Colors */
+  --ml-blue: #0090DA;
+  --ml-green: #5DA831;
+  --ml-green-light: #8CC63F;
+  --ml-amber: #E0992E;
+  --ml-red: #D9483B;
+  --ml-teal: #0F97A6;
+  --ml-canvas: #F3F6FB;
+  --ml-border: #E1E8F1;
+  --ml-navy: #16273D;
+  --ml-navy-secondary: #54657E;
+  --ml-navy-faint: #8290A6;
 }
 
 :root {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-600);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --radius: 0.65rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.235 0.015 65);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
-  --secondary: oklch(0.98 0.001 286.375);
-  --secondary-foreground: oklch(0.4 0.015 65);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.141 0.005 285.823);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.623 0.214 259.815);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.623 0.214 259.815);
-}
-
-.dark {
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-blue-50);
-  --sidebar-primary: var(--color-blue-500);
-  --sidebar-primary-foreground: var(--color-blue-50);
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.85 0.005 65);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.85 0.005 65);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.85 0.005 65);
-  --secondary: oklch(0.24 0.006 286.033);
-  --secondary-foreground: oklch(0.7 0.005 65);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.488 0.243 264.376);
-  --chart-1: var(--color-blue-300);
-  --chart-2: var(--color-blue-500);
-  --chart-3: var(--color-blue-600);
-  --chart-4: var(--color-blue-700);
-  --chart-5: var(--color-blue-800);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.85 0.005 65);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.488 0.243 264.376);
+  --radius: 0.5rem;
+  --background: #F3F6FB;
+  --foreground: #16273D;
+  --card: #ffffff;
+  --card-foreground: #16273D;
+  --popover: #ffffff;
+  --popover-foreground: #16273D;
+  --primary: #0090DA;
+  --primary-foreground: #ffffff;
+  --secondary: #EDF2F8;
+  --secondary-foreground: #54657E;
+  --muted: #EDF2F8;
+  --muted-foreground: #8290A6;
+  --accent: #E8F4FD;
+  --accent-foreground: #0090DA;
+  --destructive: #D9483B;
+  --destructive-foreground: #ffffff;
+  --border: #E1E8F1;
+  --input: #E1E8F1;
+  --ring: #0090DA;
+  --chart-1: #0090DA;
+  --chart-2: #5DA831;
+  --chart-3: #E0992E;
+  --chart-4: #0F97A6;
+  --chart-5: #D9483B;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #16273D;
+  --sidebar-primary: #0090DA;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #E8F4FD;
+  --sidebar-accent-foreground: #0090DA;
+  --sidebar-border: #E1E8F1;
+  --sidebar-ring: #0090DA;
 }
 
 @layer base {
@@ -119,6 +97,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -134,25 +114,13 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
+    max-width: 1280px;
   }
 
   .flex {
@@ -162,16 +130,117 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
     }
   }
+
+  /* MetLife card style */
+  .ml-card {
+    background: white;
+    border: 1px solid #E1E8F1;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px rgba(22, 39, 61, 0.06), 0 0 0 0 transparent;
+    transition: box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .ml-card:hover {
+    box-shadow: 0 4px 16px rgba(22, 39, 61, 0.1);
+  }
+
+  /* Status dot */
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .status-dot-green { background: #5DA831; }
+  .status-dot-amber { background: #E0992E; }
+  .status-dot-red { background: #D9483B; }
+
+  /* Monospace numbers */
+  .mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Value colors */
+  .val-green { color: #5DA831; }
+  .val-amber { color: #E0992E; }
+  .val-red { color: #D9483B; }
+
+  /* Tab nav */
+  .ml-tab {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #54657E;
+    border-bottom: 2px solid transparent;
+    transition: all 0.18s cubic-bezier(0.23, 1, 0.32, 1);
+    white-space: nowrap;
+  }
+  .ml-tab:hover {
+    color: #0090DA;
+    background: #E8F4FD;
+    border-radius: 0.375rem 0.375rem 0 0;
+  }
+  .ml-tab.active {
+    color: #0090DA;
+    border-bottom-color: #0090DA;
+    font-weight: 600;
+  }
+
+  /* Section heading */
+  .section-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16273D;
+    letter-spacing: -0.01em;
+  }
+  .section-subtext {
+    font-size: 0.8125rem;
+    color: #54657E;
+    margin-top: 0.125rem;
+  }
+
+  /* Funnel bar */
+  .funnel-bar {
+    transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Heatmap cell */
+  .heatmap-cell {
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  .heatmap-cell:hover {
+    filter: brightness(0.92);
+    transform: scale(1.04);
+    z-index: 10;
+    position: relative;
+  }
+
+  /* Journey step */
+  .journey-step {
+    transition: all 0.15s ease;
+  }
+
+  /* Waterfall bar */
+  .waterfall-bar {
+    transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #F3F6FB; }
+  ::-webkit-scrollbar-thumb { background: #C8D4E3; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #8290A6; }
 }
