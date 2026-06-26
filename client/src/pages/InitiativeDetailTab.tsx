@@ -44,7 +44,7 @@ function WaterfallChart({ tool }: { tool: typeof AI_TOOLS[0] }) {
           const pct = (step.actualMs / total) * 100;
           return (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ width: 120, fontSize: 12, color: '#54657E', textAlign: 'right', flexShrink: 0 }}>{step.step}</span>
+              <span style={{ minWidth: 80, maxWidth: 120, width: '25%', fontSize: 12, color: '#54657E', textAlign: 'right', flexShrink: 0 }}>{step.step}</span>
               <div style={{ flex: 1, background: '#E1E8F1', borderRadius: 4, height: 22, overflow: 'hidden' }}>
                 <div style={{
                   width: `${pct}%`, height: '100%', background: step.color, borderRadius: 4,
@@ -58,7 +58,7 @@ function WaterfallChart({ tool }: { tool: typeof AI_TOOLS[0] }) {
           );
         })}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 4, borderTop: '2px solid #E1E8F1', paddingTop: 8 }}>
-          <span style={{ width: 120, fontSize: 12, fontWeight: 700, color: '#16273D', textAlign: 'right', flexShrink: 0 }}>Total</span>
+          <span style={{ minWidth: 80, maxWidth: 120, width: '25%', fontSize: 12, fontWeight: 700, color: '#16273D', textAlign: 'right', flexShrink: 0 }}>Total</span>
           <span className="mono" style={{ fontSize: 14, fontWeight: 700, color: '#0090DA' }}>{total}ms end-to-end</span>
         </div>
       </div>
@@ -150,7 +150,7 @@ export default function InitiativeDetailTab() {
       </div>
 
       {/* Four panels */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="grid-2col">
 
         {/* Panel 1: Cost to Run */}
         <Card>
@@ -220,7 +220,7 @@ export default function InitiativeDetailTab() {
           title="When People Step In"
           subtitle="The top reasons a human agent takes over from the AI, and the current level of human oversight on this tool."
         />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+        <div className="grid-2col">
           <div>
             <div style={{ fontSize: 12, fontWeight: 600, color: '#54657E', marginBottom: 10 }}>Top reasons for human takeover</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

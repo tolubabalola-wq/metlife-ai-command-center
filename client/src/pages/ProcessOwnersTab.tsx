@@ -191,7 +191,7 @@ export default function ProcessOwnersTab() {
       </div>
 
       {/* Exceptions table + chart */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="grid-2col">
         <Card>
           <SectionHeader
             title="Exceptions Between Teams"
@@ -230,7 +230,7 @@ export default function ProcessOwnersTab() {
             title="Open Exceptions by Journey"
             subtitle="How many unresolved hand-off exceptions each journey is carrying right now."
           />
-          <ResponsiveContainer width="100%" height={220}>
+          <ResponsiveContainer width="100%" height={Math.max(160, exceptionsChartData.length * 36 + 60)}>
             <BarChart data={exceptionsChartData} margin={{ top: 4, right: 20, left: 0, bottom: 40 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E1E8F1" />
               <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#8290A6' }} angle={-25} textAnchor="end" axisLine={false} tickLine={false} />
@@ -255,7 +255,7 @@ export default function ProcessOwnersTab() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {JOURNEYS.map(j => (
             <div key={j.id} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-              <div style={{ width: 200, fontSize: 12.5, fontWeight: 500, color: '#16273D', flexShrink: 0 }}>{j.name.split(':')[0]}</div>
+              <div style={{ minWidth: 120, maxWidth: 200, width: '30%', fontSize: 12.5, fontWeight: 500, color: '#16273D', flexShrink: 0 }}>{j.name.split(':')[0]}</div>
               <div style={{ flex: 1 }}>
                 <ProgressBar
                   value={j.touchlessRate}

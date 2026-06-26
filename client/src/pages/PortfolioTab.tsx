@@ -183,7 +183,7 @@ export default function PortfolioTab() {
       </Card>
 
       {/* Top Tools + Adoption */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="grid-2col">
         <Card>
           <SectionHeader
             title="Biggest Tools by Value"
@@ -221,8 +221,8 @@ export default function PortfolioTab() {
             title="Usage Rate by Tool"
             subtitle="What share of eligible transactions each production tool is handling. Target is 85%."
           />
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={adoptionData} layout="vertical" margin={{ top: 0, right: 50, left: 0, bottom: 0 }}>
+          <ResponsiveContainer width="100%" height={Math.max(180, adoptionData.length * 26 + 20)}>
+            <BarChart data={adoptionData} layout="vertical" margin={{ top: 4, right: 50, left: 0, bottom: 4 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#E1E8F1" horizontal={false} />
               <XAxis type="number" tick={{ fontSize: 10, fill: '#8290A6' }} axisLine={false} tickLine={false} tickFormatter={v => `${v}%`} domain={[0, 100]} />
               <YAxis type="category" dataKey="name" tick={{ fontSize: 10, fill: '#54657E' }} axisLine={false} tickLine={false} width={90} />

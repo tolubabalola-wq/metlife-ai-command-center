@@ -68,7 +68,7 @@ function RAIScoreRow({ principle, score }: { principle: string; score: number })
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: '1px solid #F3F6FB' }}>
       <StatusDot color={status} />
-      <span style={{ width: 140, fontSize: 13, fontWeight: 500, color: '#16273D', flexShrink: 0 }}>{principle}</span>
+      <span style={{ minWidth: 100, maxWidth: 160, width: '30%', fontSize: 13, fontWeight: 500, color: '#16273D', flexShrink: 0 }}>{principle}</span>
       <div style={{ flex: 1 }}>
         <ProgressBar value={score} color={status} height={6} />
       </div>
@@ -96,9 +96,9 @@ function ExpandablePriorityBar({ priority, value, tools }: {
           {open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
         </div>
         <span style={{
-          width: 260, fontSize: 13, fontWeight: isEnabler ? 500 : 600,
+          minWidth: 120, maxWidth: 260, width: '40%', fontSize: 13, fontWeight: isEnabler ? 500 : 600,
           color: isEnabler ? '#54657E' : '#16273D', flexShrink: 0,
-          fontStyle: isEnabler ? 'italic' : 'normal',
+          fontStyle: isEnabler ? 'italic' : 'normal', lineHeight: 1.35,
         }}>{priority}</span>
         <div style={{ flex: 1, background: '#E1E8F1', borderRadius: 4, height: 20, position: 'relative', overflow: 'hidden' }}>
           <div style={{
@@ -211,7 +211,7 @@ export default function OverviewTab() {
       </div>
 
       {/* Value Trend + Donut */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="grid-2col">
         <Card>
           <SectionHeader
             title="Value Realized Over Time"
@@ -262,28 +262,28 @@ export default function OverviewTab() {
                   {/* Header row */}
                   <div
                     onClick={() => setOutcomeExpanded(isOpen ? null : bucket)}
-                    style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', cursor: 'pointer' }}
+                    style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', cursor: 'pointer', flexWrap: 'wrap' }}
                   >
                     {/* Bucket label + outcome targets */}
-                    <div style={{ flexShrink: 0, width: 200 }}>
+                    <div style={{ flexShrink: 0, minWidth: 140, flex: '0 0 auto' }}>
                       <div style={{ fontSize: 12, fontWeight: 800, color, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</div>
                       <div style={{ fontSize: 10, color: '#54657E', lineHeight: 1.35, marginTop: 2 }}>{outcome}</div>
                     </div>
                     {/* Bar track */}
-                    <div style={{ flex: 1, background: 'rgba(255,255,255,0.7)', borderRadius: 6, height: 26, overflow: 'hidden', position: 'relative' }}>
+                    <div style={{ flex: '1 1 80px', minWidth: 60, background: 'rgba(255,255,255,0.7)', borderRadius: 6, height: 24, overflow: 'hidden', position: 'relative' }}>
                       <div style={{
                         width: `${pct}%`, height: '100%', background: color,
-                        borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 10,
+                        borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 8,
                         transition: 'width 0.7s cubic-bezier(0.23,1,0.32,1)',
-                        minWidth: 100,
+                        minWidth: 80,
                       }}>
-                        <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: 'white', whiteSpace: 'nowrap' }}>{pct}% of total</span>
+                        <span className="mono" style={{ fontSize: 10, fontWeight: 700, color: 'white', whiteSpace: 'nowrap' }}>{pct}%</span>
                       </div>
                     </div>
                     {/* Value */}
-                    <span className="mono" style={{ fontSize: 17, fontWeight: 800, color, flexShrink: 0, width: 68, textAlign: 'right' }}>${data.value.toFixed(1)}M</span>
+                    <span className="mono" style={{ fontSize: 16, fontWeight: 800, color, flexShrink: 0 }}>${data.value.toFixed(1)}M</span>
                     {/* Tool count + chevron */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0, width: 110 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
                       <span style={{ fontSize: 11, color: '#54657E', whiteSpace: 'nowrap' }}>
                         {data.tools.filter(t => t.stage === 'Production').length} live
                         {data.tools.filter(t => t.stage !== 'Production').length > 0 && ` + ${data.tools.filter(t => t.stage !== 'Production').length} scaling`}
@@ -333,7 +333,7 @@ export default function OverviewTab() {
           title="Are We On Track?"
           subtitle="Five targets that tell leadership whether the AI programme is delivering as planned."
         />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
+        <div className="grid-5tiles">
           <OnTrackCard
             label="Value Realized"
             current={stats.valueRealized}
@@ -374,7 +374,7 @@ export default function OverviewTab() {
       </div>
 
       {/* Is It Safe — RAI */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="grid-2col">
         <Card>
           <SectionHeader
             title="Is It Safe? Responsible AI Scores"
@@ -457,7 +457,7 @@ export default function OverviewTab() {
       </Card>
 
       {/* Funnel */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="grid-2col">
         <Card>
           <SectionHeader
             title="From Idea to Production"
@@ -479,10 +479,10 @@ export default function OverviewTab() {
             title="Cost Per Use by Tool"
             subtitle="What each AI interaction costs, in cents. The line shows the portfolio target of 5 cents."
           />
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={220}>
             <BarChart
               data={productionTools.slice(0, 8).map(t => ({ name: t.name.split(' ').slice(0, 2).join(' '), cost: t.costPerUse }))}
-              margin={{ top: 4, right: 16, left: 0, bottom: 40 }}
+              margin={{ top: 4, right: 60, left: 0, bottom: 44 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#E1E8F1" />
               <XAxis dataKey="name" tick={{ fontSize: 9, fill: '#8290A6' }} angle={-35} textAnchor="end" axisLine={false} tickLine={false} />
@@ -559,7 +559,7 @@ export default function OverviewTab() {
         </button>
         {glossaryOpen && (
           <div className="ml-card" style={{ marginTop: 10, padding: '20px 24px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
               {GLOSSARY.map(g => (
                 <div key={g.term} style={{ padding: '10px 0', borderBottom: '1px solid #F3F6FB' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#0090DA', marginBottom: 3 }}>{g.term}</div>
