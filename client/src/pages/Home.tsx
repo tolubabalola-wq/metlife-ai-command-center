@@ -1,5 +1,5 @@
-// MetLife EMEA AI Command Center — Main Layout
-// Design: Light premium canvas, MetLife blue primary, tab navigation, plain business English
+// EMEA AI Command Center — Main Layout
+// Design: Light premium canvas, blue primary, tab navigation, plain business English
 // Mobile-first: header stacks on small screens, tabs scroll horizontally, content padding tightens
 import React, { useState } from 'react';
 import OverviewTab from './OverviewTab';
@@ -16,7 +16,7 @@ const TABS = [
   { id: 'initiative-detail', label: 'Initiative Detail', shortLabel: 'Tool', description: 'Deep-dive into a single tool' },
 ];
 
-function MetLifeLogo({ size = 32 }: { size?: number }) {
+function CompanyLogo({ size = 32 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
       <rect width="32" height="32" rx="6" fill="#0090DA" />
@@ -50,10 +50,10 @@ export default function Home() {
           }}>
             {/* Brand */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 9, flexShrink: 0 }}>
-              <MetLifeLogo size={30} />
+              <CompanyLogo size={30} />
               <div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: '#16273D', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
-                  MetLife EMEA
+                  EMEA
                 </div>
                 <div style={{ fontSize: 9, fontWeight: 600, color: '#0090DA', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                   AI Command Center
@@ -65,7 +65,7 @@ export default function Home() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
               <div style={{ textAlign: 'right' }}>
                 <div className="meta-label">Powered by</div>
-                <div className="meta-value" style={{ color: '#0090DA' }}>MetIQ Platform</div>
+                <div className="meta-value" style={{ color: '#0090DA' }}>AI Platform</div>
               </div>
               <div style={{ width: 1, height: 24, background: '#E1E8F1', flexShrink: 0 }} />
               <div style={{ textAlign: 'right' }}>
@@ -120,11 +120,11 @@ export default function Home() {
       <footer style={{ background: 'white', borderTop: '1px solid #E1E8F1', padding: '12px 14px', textAlign: 'center' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <p style={{ fontSize: 11, color: '#8290A6', lineHeight: 1.5 }}>
-            All figures shown are <strong>illustrative and for discussion purposes only</strong>. They do not represent actual MetLife financial data, operational metrics, or performance results.
-            This dashboard is a prototype built to demonstrate the AI Command Center concept for MetLife EMEA.
+            All figures shown are <strong>illustrative and for discussion purposes only</strong>. They do not represent actual EMEA financial data, operational metrics, or performance results.
+            This dashboard is a prototype built to demonstrate the AI Command Center concept for EMEA.
           </p>
           <p style={{ fontSize: 10, color: '#C8D4E3', marginTop: 4 }}>
-            MetLife EMEA AI Command Center · MetIQ Platform · June 2025
+            EMEA AI Command Center · AI Platform · June 2025
           </p>
         </div>
       </footer>
