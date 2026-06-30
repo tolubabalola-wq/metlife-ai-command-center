@@ -1,8 +1,8 @@
-// MetLife EMEA AI Command Center — By Market Tab
-// Design: Light premium canvas, MetLife blue primary, heatmap cross-tab, plain business English
+// EMEA AI Command Center — By Market Tab
+// Design: Light premium canvas, blue primary, heatmap cross-tab, plain business English
 import React, { useState } from 'react';
 import { AI_TOOLS, MARKETS, FUNCTIONS, getHeatmapData, getRiskStatus, getStatusColor } from '../lib/data';
-import { SectionHeader, Card, StatusDot, StatusBadge } from '../components/ui/MetLifeUI';
+import { SectionHeader, Card, StatusDot, StatusBadge } from '../components/ui/SharedUI';
 
 type HeatMetric = 'tools' | 'usage' | 'value' | 'quality' | 'risk';
 
